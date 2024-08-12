@@ -19,6 +19,18 @@ app.use("/api", protect, router);
 app.post("/signup", createNewUser);
 app.post("/login", signIn);
 
+/**
+ * Express error handling middleware. This middleware is responsible for handling errors
+ * thrown during the request processing pipeline. It checks the error type and responds
+ * with appropriate HTTP status codes and error messages.
+ *
+ * @param err - The error object thrown during request processing.
+ * @param req - The Express request object.
+ * @param res - The Express response object.
+ * @param next - The next middleware function in the request processing pipeline.
+ *
+ * @returns {void}
+ */
 app.use((err, req, res, next) => {
   if (err.type === "auth") {
     res.status(401).json({ error: "Unauthorized" });

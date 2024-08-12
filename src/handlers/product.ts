@@ -1,5 +1,28 @@
 import prisma from "../modules/db";
 
+/**
+ * Retrieves a list of products based on pagination, sorting, and filtering criteria.
+ *
+ * @param {import('express').Request} req - The Express request object.
+ * @param {import('express').Response} res - The Express response object.
+ * @param {import('express').NextFunction} next - The Express next middleware function.
+ *
+ * @returns {Promise<void>}
+ *
+ * @throws Will throw an error if the database operation fails.
+ *
+ * @remarks
+ * The function accepts query parameters for pagination, sorting, and filtering.
+ * It returns a JSON response with the retrieved products or an error message.
+ *
+ * Query parameters:
+ * - page: The page number for pagination (default: 1).
+ * - pageSize: The number of products per page (default: 5).
+ * - orderBy: The property to sort by (default: createdAt).
+ * - sortOrder: The order to sort by (default: asc).
+ * - filterProperty: The property to filter by.
+ * - filterValue: The value to filter by.
+ */
 export const getAllProducts = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -32,6 +55,23 @@ export const getAllProducts = async (req, res, next) => {
   }
 };
 
+/**
+ * Retrieves a single product by its ID.
+ *
+ * @param {import('express').Request} req - The Express request object.
+ * @param {import('express').Response} res - The Express response object.
+ * @param {import('express').NextFunction} next - The Express next middleware function.
+ *
+ * @returns {Promise<void>}
+ *
+ * @throws Will throw an error if the database operation fails.
+ *
+ * @remarks
+ * The function accepts a product ID as a parameter in the request's URL parameters.
+ * It retrieves the product from the database and returns a JSON response with the product data.
+ * If the product is not found, it returns a 404 status code with an error message.
+ *
+ */
 export const getProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -47,6 +87,25 @@ export const getProduct = async (req, res, next) => {
   }
 };
 
+/**
+ * Creates a new product in the database.
+ *
+ * @param {import('express').Request} req - The Express request object.
+ * @param {import('express').Response} res - The Express response object.
+ * @param {import('express').NextFunction} next - The Express next middleware function.
+ *
+ * @returns {Promise<void>}
+ *
+ * @throws Will throw an error if the database operation fails.
+ *
+ * @remarks
+ * The function accepts product data in the request's body.
+ * It validates the provider ID and creates a new product in the database.
+ * If the provider is not found, it returns a 404 status code with an error message.
+ * If the product creation fails, it returns a 400 status code with an error message.
+ * Otherwise, it returns a 201 status code with the created product data.
+ *
+ */
 export const createProduct = async (req, res, next) => {
   try {
     const { name, price, description, providerId } = req.body;
@@ -71,6 +130,25 @@ export const createProduct = async (req, res, next) => {
   }
 };
 
+/**
+ * Updates an existing product in the database.
+ *
+ * @param {import('express').Request} req - The Express request object.
+ * @param {import('express').Response} res - The Express response object.
+ * @param {import('express').NextFunction} next - The Express next middleware function.
+ *
+ * @returns {Promise<void>}
+ *
+ * @throws Will throw an error if the database operation fails.
+ *
+ * @remarks
+ * The function accepts a product ID as a parameter in the request's URL parameters.
+ * It also accepts product data in the request's body.
+ * It updates the product in the database with the provided data.
+ * If the product is not found, it returns a 404 status code with an error message.
+ * Otherwise, it returns a 201 status code with the updated product data.
+ *
+ */
 export const updateProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -90,6 +168,24 @@ export const updateProduct = async (req, res, next) => {
   }
 };
 
+/**
+ * Deletes a product from the database by its ID.
+ *
+ * @param {import('express').Request} req - The Express request object.
+ * @param {import('express').Response} res - The Express response object.
+ * @param {import('express').NextFunction} next - The Express next middleware function.
+ *
+ * @returns {Promise<void>}
+ *
+ * @throws Will throw an error if the database operation fails.
+ *
+ * @remarks
+ * The function accepts a product ID as a parameter in the request's URL parameters.
+ * It deletes the product from the database.
+ * If the product is not found, it returns a 404 status code with an error message.
+ * Otherwise, it returns a 201 status code with the deleted product data.
+ *
+ */
 export const deleteProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
