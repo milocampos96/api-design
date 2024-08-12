@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken";
 import bycrypt from "bcrypt";
+import { config } from "dotenv";
+config();
 
 export const comparePasswords = async (password, hash) => {
   return bycrypt.compare(password, hash);

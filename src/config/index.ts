@@ -1,6 +1,5 @@
-import merge from "lodash.merge";
-import * as dotenv from "dotenv";
-dotenv.config();
+import { config } from "dotenv";
+config();
 declare const process: NodeJS.Process;
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
@@ -15,4 +14,4 @@ const defaultConfig = {
   logging: false,
 };
 
-export default merge(defaultConfig);
+export default defaultConfig;
