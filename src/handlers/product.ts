@@ -20,6 +20,7 @@ export const getAllProducts = async (req, res, next) => {
         id: true,
         name: true,
         description: true,
+        price: true,
       },
     });
     if (!products) {
