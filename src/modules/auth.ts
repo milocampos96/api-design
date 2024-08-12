@@ -29,7 +29,7 @@ export const protect = (req, res, next) => {
 
   const [, token] = bearer.split(" ");
   if (!token) {
-    console.log("here");
+    ("here");
     res.status(401);
     res.send("Not authorized");
     return;
@@ -38,7 +38,7 @@ export const protect = (req, res, next) => {
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     req.user = payload;
-    console.log(payload);
+    payload;
     next();
     return;
   } catch (e) {
