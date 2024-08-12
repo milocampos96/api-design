@@ -20,6 +20,8 @@ export const getAllProviders = async (req, res, next) => {
         id: true,
         name: true,
         description: true,
+        phone: true,
+        address: true,
       },
     });
 
