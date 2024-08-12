@@ -1,4 +1,8 @@
 import merge from "lodash.merge";
+import * as dotenv from "dotenv";
+dotenv.config();
+
+declare const process: NodeJS.Process;
 
 // make sure NODE_ENV is set
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
